@@ -1,0 +1,13 @@
+## Запрос для регистрации пользователя
+curl http://localhost:8000/register -d "{\"name\":\"SomeUser\",\"password\":\"12345678\"}" -H "content-type: application/json"
+
+
+##Запрос для логинации пользователя
+curl http://localhost:8000/login -d "{\"name\":\"SomeUser\",\"password\":\"12345678\"}" -H "content-type: application/json"
+
+
+##Отправляем некоторое количество сообщений
+curl http://localhost:8000/message -d "{\"name\":\"SomeUser\",\"message\":\"Message\"}" -H "content-type: application/json" -H "Authorization: Bearer_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiU29tZVVzZXIifQ.OGHyGxAXetdba7mpFBlw_2CmXDsUrnTSKYgUVXJCoGM"
+
+##Получаем список последних 5 сообщений
+curl http://localhost:8000/message -d "{\"name\":\"SomeUser\",\"message\":\"history 5\"}" -H "content-type: application/json" -H "Authorization: Bearer_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYW1lIjoiU29tZVVzZXIifQ.OGHyGxAXetdba7mpFBlw_2CmXDsUrnTSKYgUVXJCoGM"

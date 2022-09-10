@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  inside-server:
+    depends_on:
+      - inside-db
+    image: inside-test
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8100
+    environment:
+      - DATABASE_URL=postgresql://user_db:user_pass@inside-db:5432/inside_test_base
+    volumes:
+      - ./inside-server:/app
+
+  inside-db:
+    image: postgres:11-alpine
+    environment:
+      - POSTGRES_USER=user_db
+      - POSTGRES_PASSWORD=user_pass
+      - POSTGRES_DB=inside_test_base
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+    ports:
+      - 5432:5432
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+volumes:
+  pg-data:
+
